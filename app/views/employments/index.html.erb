@@ -17,6 +17,11 @@
   <%= submit_tag "Import CSV" %>
 <% end %>
 
+<div>
+  <p>supprimer tout</p>
+  <%= link_to "supprimer", destroy_all_employments_path, method: :delete  %>
+</div>
+
 <div class="container">
   <div class="mt-5" id="tableau">
     <table>

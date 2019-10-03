@@ -19,4 +19,9 @@ class EmploymentsController < ApplicationController
 
     redirect_to root_url
   end
+
+  def destroy_all
+    Employment.destroy_all
+    redirect_to root_url
+  end
 end

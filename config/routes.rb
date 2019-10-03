@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root to: 'employments#index'
 
-  resources :employments, only: [:index, :show, :update] do
+  resources :employments, only: [:index] do
     collection do
       post 'import'
-      patch 'general_update'
+      delete 'destroy_all'
     end
   end
 end
