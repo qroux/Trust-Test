@@ -1,0 +1,58 @@
+<h1>Employment list</h1>
+
+
+
+<h3>Nombre d'emplois dans la liste: <%= @employments.count %> </h3>
+<div>
+  <p>mettre tout à jour</p>
+<%= link_to 'enrichir', method: :patch  %>
+
+</div>
+
+
+<h3>Ajouter un fichier csv</h3>
+
+<%= form_tag multipart: true do %>
+  <%= file_field_tag 'file' %>
+  <%= submit_tag "Import CSV" %>
+<% end %>
+
+<div class="container">
+  <div class="mt-5" id="tableau">
+    <table>
+        <thead>
+            <tr>
+                <th>Année</th>
+                <th>Collectivité</th>
+                <th>Type de contrat</th>
+                <th>Emplois</th>
+                <th>Niveau</th>
+                <th>Specialité</th>
+                <th>Hommes</th>
+                <th>Femmes</th>
+                <th>Parité</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @employments.each do |e|%>
+            <tr>
+                <td><%= e.year %></td>
+                <td><%= e.collectivity %></td>
+                <td><%= e.contract_type %></td>
+                <td><%= e.id %> - <%= e.position %></td>
+                <td><%= e.level %></td>
+                <td><%= e.speciality %></td>
+                <td><%= e.men_number %></td>
+                <td><%= e.women_number %></td>
+                <% if e.men_number.nil? %>
+                  <td><p>indisponible</p> <%= link_to "enrichir", method: :patch %></td>
+                <% else %>
+                  <% result = (e.women_number.fdiv(e.women_number + e.men_number) * 100)  %>
+                  <td><%= result.nan? ? '-' : result.round(2) %> %</td>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+</div>
