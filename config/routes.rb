@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get 'employments/index'
   root to: 'employments#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :employments, only: [:index, :show, :update] do
+    collection do
+      post 'import'
+      patch 'general_update'
+    end
+  end
 end

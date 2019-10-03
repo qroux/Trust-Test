@@ -12,7 +12,7 @@
 
 <h3>Ajouter un fichier csv</h3>
 
-<%= form_tag multipart: true do %>
+<%= form_tag import_employments_path, multipart: true do %>
   <%= file_field_tag 'file' %>
   <%= submit_tag "Import CSV" %>
 <% end %>
