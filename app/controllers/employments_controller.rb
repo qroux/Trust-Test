@@ -21,6 +21,19 @@ class EmploymentsController < ApplicationController
     redirect_to root_url
   end
 
+  def enrich_all
+    start = Time.now
+    employments = Employment.all
+
+    employments.each do |employment|
+      FetchApi.perform_query(employment)
+    end
+
+    puts "Time to ENRICH ALL: #{Time.now - start}"
+
+    redirect_to root_url
+  end
+
   private
 
   def set_employment

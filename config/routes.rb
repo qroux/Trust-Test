@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       post 'import'
       delete 'destroy_all'
+      patch 'enrich_all'
     end
     member do
       patch 'enrichement'
