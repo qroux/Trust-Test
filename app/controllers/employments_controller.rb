@@ -4,20 +4,8 @@ class EmploymentsController < ApplicationController
   end
 
   def import
-    csv_options = { col_sep: ';', headers: :first_row }
-
-    CSV.foreach(params[:file].path, csv_options) do |row|
-      Employment.create(year: row["Année"],
-                  collectivity: row["Collectivité"],
-                  contract_type: row["Type de contrat"],
-                  position: row["Emplois"],
-                  level: row["Niveau"],
-                  speciality: row["Spécialité"])
-
-      puts "#{row['Emplois']} job CREATED"
-    end
-
-    redirect_to root_url
+    ImportCsv.import(params[:file])
+    redirect_to root_url, notice: 'Fichier importé avec succès'
   end
 
   def destroy_all
