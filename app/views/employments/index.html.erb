@@ -50,7 +50,7 @@
                 <td><%= e.men_number %></td>
                 <td><%= e.women_number %></td>
                 <% if e.men_number.nil? %>
-                  <td><p>indisponible</p> <%= link_to "enrichir", method: :patch %></td>
+                  <td><p>indisponible</p> <%= link_to "enrichir", enrichement_employment_path(e), method: :patch %></td>
                 <% else %>
                   <% result = (e.women_number.fdiv(e.women_number + e.men_number) * 100)  %>
                   <td><%= result.nan? ? '-' : result.round(2) %> %</td>

@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_160215) do
     t.string "position"
     t.string "level"
     t.string "speciality"
-    t.string "men_number"
-    t.string "women_number"
+    t.integer "men_number"
+    t.integer "women_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

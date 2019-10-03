@@ -13,7 +13,7 @@ class ImportCsv
                           level: row["Niveau"],
                           speciality: row["Spécialité"])
         puts "#{row['Emplois']} job CREATED"
-      elsif result.year > row['Année'].to_i
+      elsif result.year < row['Année'].to_i
         result.update(year: row['Année'])
         puts "Updated #{result.year == row['Année'].to_i} ----have: #{result.year} Expected: #{row['Année']}"
       else

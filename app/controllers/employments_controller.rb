@@ -1,10 +1,12 @@
 class EmploymentsController < ApplicationController
+  before_action :set_employment, only: [:enrichement]
+
   def index
     @employments = Employment.order(position: :asc, year: :desc)
   end
 
   def import
-    ImportCsv.import(params[:file])
+    ImportCsv.import(params[:file]) unless params[:file].nil?
     redirect_to root_url, notice: 'Fichier importé avec succès'
   end
 
@@ -14,16 +16,14 @@ class EmploymentsController < ApplicationController
   end
 
   def enrichement
-    employment = Job.find(params[:id])
+    FetchApi.perform_query(@employment)
 
-    FetchApi.perform_query(employment)
+    redirect_to root_url
+  end
 
+  private
 
-        finish = Time.now
-
-        puts "-----------------------------------------------"
-        puts "temps pour enrichir: #{ finish - start}"
-
-        redirect_to root_path
+  def set_employment
+    @employment = Employment.find(params[:id])
   end
 end
