@@ -12,4 +12,18 @@ class EmploymentsController < ApplicationController
     Employment.destroy_all
     redirect_to root_url
   end
+
+  def enrichement
+    employment = Job.find(params[:id])
+
+    FetchApi.perform_query(employment)
+
+
+        finish = Time.now
+
+        puts "-----------------------------------------------"
+        puts "temps pour enrichir: #{ finish - start}"
+
+        redirect_to root_path
+  end
 end
