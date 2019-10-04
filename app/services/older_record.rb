@@ -1,5 +1,5 @@
 class OlderRecord
-  def self.find_record(row)
+  def self.from_csv(row)
     Employment.find_by(collectivity: row["Collectivité"],
                        contract_type: row["Type de contrat"],
                        position: row["Emplois"],
@@ -8,12 +8,14 @@ class OlderRecord
   end
 
   def self.from_json(row)
-    Employment.find_by(collectivity: row["collectivite"].upcase,
-                       contract_type: row["type_de_contrat"].upcase,
-                       position: row["emplois"].upcase,
-                       level: row["niveau"].try(:upcase),
-                       speciality: row["specialite"])
+    # improved fetching success with case insensitive queries
+    Employment.where("collectivity ILIKE ? AND contract_type ILIKE ?
+                      AND position ILIKE ? AND level ILIKE ?
+                      AND speciality ILIKE ?",
+                      row['collectivite'],
+                      row['type_de_contrat'],
+                      row['emplois'],
+                      row['niveau'],
+                      row["specialite"]).first
   end
 end
-
-    # Employment.find_by(collectivity: row["collectivite"], contract_type: row["type_de_contrat"], position: row["emplois"], level: row["niveau"], speciality: row["specialite"])
