@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'employments#index'
 
-  resources :employments, only: [:index] do
+  resources :employments, only: [:index, :show] do
     collection do
       post 'import'
       delete 'destroy_all'

@@ -1,8 +1,12 @@
 class EmploymentsController < ApplicationController
-  before_action :set_employment, only: [:enrichment]
+  before_action :set_employment, only: [:show, :enrichment]
 
   def index
     @employments = Employment.order(position: :asc, year: :desc)
+  end
+
+  def show
+    @query = BuildQuery.encode_query(@employment)
   end
 
   def import
@@ -18,7 +22,7 @@ class EmploymentsController < ApplicationController
   def enrichment
     FetchApi.perform_query(@employment)
 
-    redirect_to root_url
+    redirect_to employment_path(@employment)
   end
 
   def enrich_all

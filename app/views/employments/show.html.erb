@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="text-center">
+    <h1>id: <%= @employment.id %> - <%= @employment.position %></h1>
+  </div>
+  <div class="mt-5" id="tableau">
+    <table>
+      <thead>
+        <tr>
+          <th>Année</th>
+          <th>Collectivité</th>
+          <th>Type de contrat</th>
+          <th>Emplois</th>
+          <th>Niveau</th>
+          <th>Specialité</th>
+          <th>Hommes</th>
+          <th>Femmes</th>
+          <th>Parité</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @employment.year %></td>
+          <td><%= @employment.collectivity %></td>
+          <td><%= @employment.contract_type %></td>
+          <td><%= @employment.id %> - <%= @employment.position %></td>
+          <td><%= @employment.level %></td>
+          <td><%= @employment.speciality %></td>
+          <td><%= @employment.men_number %></td>
+          <td><%= @employment.women_number %></td>
+          <% if @employment.men_number.nil? %>
+          <td><p>indisponible</p> <%= link_to "enrichir", enrichment_employment_path(@employment), method: :patch %></td>
+          <% else %>
+          <% result = (@employment.women_number.fdiv(@employment.women_number + @employment.men_number) * 100)  %>
+          <td><%= result.nan? ? '-' : result.round(2) %> %</td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <div class="my-5">
+      <h3>Vérification manuelle</h3>
+      <%= link_to @query, "#{@query}", target: :_blank  %>
+    </div>
+    <div class="d-flex justify-content-center align-items-center text-center">
+      <%= link_to 'retour', root_path, class: "btn btn-outline-success m-4 p-2" %>
+    </div>
+
+
+
+
+</div>
+
+
