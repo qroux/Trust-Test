@@ -7,8 +7,8 @@ class CreateEmployments < ActiveRecord::Migration[6.0]
       t.string :position
       t.string :level
       t.string :speciality
-      t.string :men_number
-      t.string :women_number
+      t.integer :men_number
+      t.integer :women_number
 
       t.timestamps
     end

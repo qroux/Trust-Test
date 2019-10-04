@@ -1,63 +1,56 @@
-<h1>Employment list</h1>
-
-
-
-<h3>Nombre d'emplois dans la liste: <%= @employments.count %> </h3>
-<div>
-  <p>mettre tout à jour</p>
-<%= link_to 'enrichir', method: :patch  %>
-
-</div>
-
-
-<h3>Ajouter un fichier csv</h3>
-
-<%= form_tag import_employments_path, multipart: true do %>
-  <%= file_field_tag 'file' %>
-  <%= submit_tag "Import CSV" %>
-<% end %>
-
-<div>
-  <p>supprimer tout</p>
-  <%= link_to "supprimer", destroy_all_employments_path, method: :delete  %>
-</div>
-
 <div class="container">
+  <div class="text-center">
+    <h1>Repertoire des métiers de la ville de Paris et du département</h1>
+  </div>
+  <div class="mt-5">
+    <h3>Nombre de métiers référencés: <%= @employments.count %> </h3>
+    <div>
+      <%= link_to 'enrichir', enrich_all_employments_path, method: :patch  %>
+    </div>
+    <h3>Ajouter un archive csv</h3>
+    <%= form_tag import_employments_path, multipart: true do %>
+    <%= file_field_tag 'file' %>
+    <%= submit_tag "Import CSV" %>
+    <% end %>
+    <div>
+      <%= link_to "supprimer", destroy_all_employments_path, method: :delete  %>
+    </div>
+  </div>
   <div class="mt-5" id="tableau">
     <table>
-        <thead>
-            <tr>
-                <th>Année</th>
-                <th>Collectivité</th>
-                <th>Type de contrat</th>
-                <th>Emplois</th>
-                <th>Niveau</th>
-                <th>Specialité</th>
-                <th>Hommes</th>
-                <th>Femmes</th>
-                <th>Parité</th>
-            </tr>
-        </thead>
-        <tbody>
-          <% @employments.each do |e|%>
-            <tr>
-                <td><%= e.year %></td>
-                <td><%= e.collectivity %></td>
-                <td><%= e.contract_type %></td>
-                <td><%= e.id %> - <%= e.position %></td>
-                <td><%= e.level %></td>
-                <td><%= e.speciality %></td>
-                <td><%= e.men_number %></td>
-                <td><%= e.women_number %></td>
-                <% if e.men_number.nil? %>
-                  <td><p>indisponible</p> <%= link_to "enrichir", method: :patch %></td>
-                <% else %>
-                  <% result = (e.women_number.fdiv(e.women_number + e.men_number) * 100)  %>
-                  <td><%= result.nan? ? '-' : result.round(2) %> %</td>
-                <% end %>
-            </tr>
+      <thead>
+        <tr>
+          <th>Année</th>
+          <th>Collectivité</th>
+          <th>Type de contrat</th>
+          <th>Emplois</th>
+          <th>Niveau</th>
+          <th>Specialité</th>
+          <th>Hommes</th>
+          <th>Femmes</th>
+          <th>Parité</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employments.each do |e|%>
+        <tr>
+          <td><%= e.year %></td>
+          <td><%= e.collectivity %></td>
+          <td><%= e.contract_type %></td>
+          <td><%= e.id %> - <%= e.position %></td>
+          <td><%= e.level %></td>
+          <td><%= e.speciality %></td>
+          <td><%= e.men_number %></td>
+          <td><%= e.women_number %></td>
+          <% if e.men_number.nil? %>
+          <td><p>indisponible</p> <%= link_to "enrichir", enrichement_employment_path(e), method: :patch %></td>
+          <% else %>
+          <% result = (e.women_number.fdiv(e.women_number + e.men_number) * 100)  %>
+          <td><%= result.nan? ? '-' : result.round(2) %> %</td>
           <% end %>
-        </tbody>
+        </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>
