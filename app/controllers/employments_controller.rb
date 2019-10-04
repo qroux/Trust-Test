@@ -1,5 +1,5 @@
 class EmploymentsController < ApplicationController
-  before_action :set_employment, only: [:enrichement]
+  before_action :set_employment, only: [:enrichment]
 
   def index
     @employments = Employment.order(position: :asc, year: :desc)
@@ -15,7 +15,7 @@ class EmploymentsController < ApplicationController
     redirect_to root_url
   end
 
-  def enrichement
+  def enrichment
     FetchApi.perform_query(@employment)
 
     redirect_to root_url

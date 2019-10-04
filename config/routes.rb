@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       patch 'enrich_all'
     end
     member do
-      patch 'enrichement'
+      patch 'enrichment'
     end
   end
 end
