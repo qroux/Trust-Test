@@ -29,3 +29,9 @@ tr:nth-child(odd) td {
 caption {
   padding: 10px;
 }
+
+a {
+  text-decoration: none !important;
+  color: $strong-gray;
+  font-weight: bold;
+}

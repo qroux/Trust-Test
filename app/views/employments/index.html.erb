@@ -37,7 +37,8 @@
           <td><%= e.year %></td>
           <td><%= e.collectivity %></td>
           <td><%= e.contract_type %></td>
-          <td><%= e.id %> - <%= e.position %></td>
+          <td><%= link_to "#{e.id} - #{ e.position}", employment_path(e) %></td>
+<!--           <td><%= e.id %> - <%= e.position %></td> -->
           <td><%= e.level %></td>
           <td><%= e.speciality %></td>
           <td><%= e.men_number %></td>
