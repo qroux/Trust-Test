@@ -6,16 +6,13 @@ class FetchApi
     array_of_records = hash_result.dig('records')
 
     array_of_records.each do |r|
-      r_f = r['fields']
-
-      result = OlderRecord.from_json(r_f)
+      result = OlderRecord.from_json(r['fields'])
 
       if result.nil?
         puts "ERROR: no corresponding record in db"
       else
-        result.update(year: r_f['annee'],
-                      men_number: r_f['nombre_d_hommes'].to_i,
-                      women_number: r_f['nombre_de_femmes'].to_i)
+        result.update(men_number: r['fields']['nombre_d_hommes'].to_i,
+                      women_number: r['fields']['nombre_de_femmes'].to_i)
       end
     end
   end
