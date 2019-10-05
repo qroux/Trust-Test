@@ -11,4 +11,7 @@ Rails.application.routes.draw do
       patch 'enrichment'
     end
   end
+
+  require "sidekiq/web"
+  mount Sidekiq::Web => '/sidekiq'
 end
