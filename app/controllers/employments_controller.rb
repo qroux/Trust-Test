@@ -2,7 +2,7 @@ class EmploymentsController < ApplicationController
   before_action :set_employment, only: [:show, :enrichment]
 
   def index
-    @employments = Employment.order(position: :asc, year: :desc)
+    @employments = Employment.order(position: :asc, year: :desc).page(params[:page]).per(5)
   end
 
   def show

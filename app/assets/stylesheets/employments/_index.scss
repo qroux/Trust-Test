@@ -1,4 +1,5 @@
 table {
+  height: 10vh;
   border-collapse: collapse;
   border: 2px solid rgb(200,200,200);
   letter-spacing: 1px;
@@ -35,3 +36,15 @@ a {
   color: $strong-gray;
   font-weight: bold;
 }
+
+.valid {
+  background-color: rgba(0, 255, 42, 0.3) !important;
+}
+
+.notvalid {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+// #tableau {
+//   height: 30vh;
+// }
