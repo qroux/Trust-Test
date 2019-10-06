@@ -6,16 +6,16 @@ class ImportCsv
       result = OlderRecord.from_csv(row)
 
       if result.nil?
-        # remove nil value to remove where(field IS NULL) in olderRecord service
-        row["Niveau"].nil? ? lvl = "-" : lvl = row["Niveau"]
-        row["Spécialité"].nil? ? spe = "-" : spe = row["Spécialité"]
+        # remove nil value to remove where(field IS NULL) cases in olderRecord service
+        row["Niveau"] ||= "-"
+        row["Spécialité"] ||= "-"
 
         Employment.create(year: row["Année"].to_i,
                           collectivity: row["Collectivité"],
                           contract_type: row["Type de contrat"],
                           position: row["Emplois"],
-                          level: lvl,
-                          speciality: spe)
+                          level: row["Niveau"],
+                          speciality: row["Spécialité"])
       elsif result.year < row['Année'].to_i
         result.update(year: row['Année'])
       end

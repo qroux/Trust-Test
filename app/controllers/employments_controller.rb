@@ -20,16 +20,17 @@ class EmploymentsController < ApplicationController
   end
 
   def enrichment
-    FetchApi.perform_query(@employment)
+    EnrichJob.perform_now(@employment)
 
     redirect_to employment_path(@employment)
   end
 
   def enrich_all
-    employments = Employment.all
+    # prevents redundant job if already enriched
+    employments = Employment.where(enriched: false)
 
     employments.each do |employment|
-      EnrichAllJob.perform_later(employment)
+      EnrichJob.perform_later(employment)
     end
 
     redirect_to root_url

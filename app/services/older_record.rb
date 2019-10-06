@@ -1,5 +1,8 @@
 class OlderRecord
   def self.from_csv(row)
+    row["Niveau"] ||= "-"
+    row["Spécialité"] ||= "-"
+
     Employment.find_by(collectivity: row["Collectivité"],
                        contract_type: row["Type de contrat"],
                        position: row["Emplois"],
@@ -8,9 +11,9 @@ class OlderRecord
   end
 
   def self.from_json(row)
-    # case insensitive queries + nil value removed to remove "where(field IS NULL)"
-    row["niveau"].nil? ? lvl = "-" : lvl = row["niveau"]
-    row["specialite"].nil? ? spe = "-" : spe = row["specialite"]
+    # case insensitive queries + nil value removed to remove "where(field IS NULL) cases"
+    row["niveau"] ||= "-"
+    row["specialite"] ||= "-"
 
     results = Employment.where("lower(collectivity) LIKE ?
                                 AND lower(contract_type) LIKE ?
@@ -20,8 +23,8 @@ class OlderRecord
                                 row['collectivite'].downcase.gsub(/[é]/, 'e'),
                                 row['type_de_contrat'].downcase,
                                 row['emplois'],
-                                lvl.downcase,
-                                spe.downcase)
+                                row["niveau"].downcase,
+                                row["specialite"].downcase)
 
     raise if results.count > 1
 

@@ -38,16 +38,15 @@
           <td><%= e.collectivity %></td>
           <td><%= e.contract_type %></td>
           <td><%= link_to "#{e.id} - #{ e.position}", employment_path(e) %></td>
-<!--           <td><%= e.id %> - <%= e.position %></td> -->
           <td><%= e.level %></td>
           <td><%= e.speciality %></td>
           <td><%= e.men_number %></td>
           <td><%= e.women_number %></td>
-          <% if e.men_number.nil? %>
-          <td><p>indisponible</p> <%= link_to "enrichir", enrichment_employment_path(e), method: :patch %></td>
+          <% if e.enriched %>
+            <% result = (e.women_number.fdiv(e.women_number + e.men_number) * 100)  %>
+            <td><%= result.nan? ? '-' : result.round(2) %> %</td>
           <% else %>
-          <% result = (e.women_number.fdiv(e.women_number + e.men_number) * 100)  %>
-          <td><%= result.nan? ? '-' : result.round(2) %> %</td>
+            <td><p>indisponible</p> <%= link_to "enrichir", enrichment_employment_path(e), method: :patch %></td>
           <% end %>
         </tr>
         <% end %>

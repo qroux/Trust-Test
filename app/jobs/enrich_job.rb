@@ -1,4 +1,4 @@
-class EnrichAllJob < ApplicationJob
+class EnrichJob < ApplicationJob
   queue_as :default
 
   def perform(employment)
