@@ -6,6 +6,10 @@ class ImportCsv
       result = OlderRecord.from_csv(row)
 
       if result.nil?
+        # remove nil value to remove where(field IS NULL) cases in olderRecord service
+        row["Niveau"] ||= "-"
+        row["Spécialité"] ||= "-"
+
         Employment.create(year: row["Année"].to_i,
                           collectivity: row["Collectivité"],
                           contract_type: row["Type de contrat"],

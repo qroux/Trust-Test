@@ -12,7 +12,8 @@ class FetchApi
         puts "ERROR: no corresponding record in db"
       else
         result.update(men_number: r['fields']['nombre_d_hommes'].to_i,
-                      women_number: r['fields']['nombre_de_femmes'].to_i)
+                      women_number: r['fields']['nombre_de_femmes'].to_i,
+                      enriched: true)
       end
     end
   end

@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 2019_10_03_160215) do
     t.string "collectivity"
     t.string "contract_type"
     t.string "position"
-    t.string "level"
-    t.string "speciality"
+    t.string "level", default: "-"
+    t.string "speciality", default: "-"
     t.integer "men_number"
     t.integer "women_number"
+    t.boolean "enriched", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
