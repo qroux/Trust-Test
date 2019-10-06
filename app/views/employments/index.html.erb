@@ -43,8 +43,9 @@
           <td><%= e.men_number %></td>
           <td><%= e.women_number %></td>
           <% if e.enriched %>
-            <% result = (e.women_number.fdiv(e.women_number + e.men_number) * 100)  %>
-            <td><%= result.nan? ? '-' : result.round(2) %> %</td>
+            <td class=<%= e.parity == "respectée" ? "valid" : "notvalid" %>>
+              <%= e.parity %>
+            </td>
           <% else %>
             <td><p>indisponible</p> <%= link_to "enrichir", enrichment_employment_path(e), method: :patch %></td>
           <% end %>

@@ -27,11 +27,12 @@
           <td><%= @employment.speciality %></td>
           <td><%= @employment.men_number %></td>
           <td><%= @employment.women_number %></td>
-          <% if @employment.men_number.nil? %>
-          <td><p>indisponible</p> <%= link_to "enrichir", enrichment_employment_path(@employment), method: :patch %></td>
+          <% if @employment.enriched %>
+            <td class=<%= @employment.parity == "respectée" ? "valid" : "notvalid" %>>
+              <%= @employment.parity %>
+            </td>
           <% else %>
-          <% result = (@employment.women_number.fdiv(@employment.women_number + @employment.men_number) * 100)  %>
-          <td><%= result.nan? ? '-' : result.round(2) %> %</td>
+            <td><p>indisponible</p> <%= link_to "enrichir", enrichment_employment_path(@employment), method: :patch %></td>
           <% end %>
         </tr>
       </tbody>
@@ -44,10 +45,6 @@
     <div class="d-flex justify-content-center align-items-center text-center">
       <%= link_to 'retour', root_path, class: "btn btn-outline-success m-4 p-2" %>
     </div>
-
-
-
-
 </div>
 
 
