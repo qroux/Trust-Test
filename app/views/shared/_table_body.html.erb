@@ -1,0 +1,17 @@
+<tr>
+  <td><%= item.year %></td>
+  <td><%= item.collectivity %></td>
+  <td><%= item.contract_type %></td>
+  <td><%= link_to "#{item.id} - #{ item.position}", employment_path(item) %></td>
+  <td><%= item.level %></td>
+  <td><%= item.speciality %></td>
+  <td><%= item.men_number %></td>
+  <td><%= item.women_number %></td>
+  <% if item.enriched %>
+    <td class=<%= item.parity == "respectée" ? "valid" : "notvalid" %>>
+      <%= item.parity %>
+    </td>
+  <% else %>
+    <td><p>indisponible</p> <%= link_to "enrichir", enrichment_employment_path(item), method: :patch %></td>
+  <% end %>
+</tr>

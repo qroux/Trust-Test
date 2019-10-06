@@ -4,37 +4,9 @@
   </div>
   <div class="mt-5" id="tableau">
     <table>
-      <thead>
-        <tr>
-          <th>Année</th>
-          <th>Collectivité</th>
-          <th>Type de contrat</th>
-          <th>Emplois</th>
-          <th>Niveau</th>
-          <th>Specialité</th>
-          <th>Hommes</th>
-          <th>Femmes</th>
-          <th>Parité</th>
-        </tr>
-      </thead>
+      <%= render partial: 'shared/table_header' %>
       <tbody>
-        <tr>
-          <td><%= @employment.year %></td>
-          <td><%= @employment.collectivity %></td>
-          <td><%= @employment.contract_type %></td>
-          <td><%= @employment.id %> - <%= @employment.position %></td>
-          <td><%= @employment.level %></td>
-          <td><%= @employment.speciality %></td>
-          <td><%= @employment.men_number %></td>
-          <td><%= @employment.women_number %></td>
-          <% if @employment.enriched %>
-            <td class=<%= @employment.parity == "respectée" ? "valid" : "notvalid" %>>
-              <%= @employment.parity %>
-            </td>
-          <% else %>
-            <td><p>indisponible</p> <%= link_to "enrichir", enrichment_employment_path(@employment), method: :patch %></td>
-          <% end %>
-        </tr>
+        <%= render partial: 'shared/table_body', object: @employment, as: 'item' %>
       </tbody>
     </table>
   </div>
