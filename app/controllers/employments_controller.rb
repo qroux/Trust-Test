@@ -10,7 +10,7 @@ class EmploymentsController < ApplicationController
   end
 
   def import
-    ImportCsv.import(params[:file]) unless params[:file].nil?
+    ImportCsv.import(params[:file][:csv]) unless params[:file].nil?
     redirect_to root_url, notice: 'Fichier importé avec succès'
   end
 
