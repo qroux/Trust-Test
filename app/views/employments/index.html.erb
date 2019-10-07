@@ -1,33 +1,39 @@
-<div class="container">
-  <div class="text-center">
-    <h1>Repertoire des métiers de la ville de Paris et du département</h1>
-  </div>
-  <div class="mt-5">
-    <h3>Nombre de métiers référencés: <%= @employments.count %> </h3>
-    <div>
-      <%= link_to 'enrichir', enrich_all_employments_path, method: :patch  %>
+<div class="container" id="main-container">
+  <div id="header">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex text-left align-items-center">
+        <h4>Nombre de métiers référencés: <%= Employment.all.count %></h4>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="mr-3 pt-1">
+          <%= form_for :file, url: "employments/import", html: {id: "csv-uploader"}, multipart: true do |f| %>
+          <div class="file-upload" >
+            <label for="file-input"><i class="fas fa-file-import"></i></label>
+            <%= f.file_field :csv, id:"file-input" %>
+          </div>
+          <% end %>
+        </div>
+        <div class="m-2">
+          <%= link_to 'Enrichir la liste', enrich_all_employments_path, class: "btn btn-sm btn-outline-success", method: :patch  %>
+        </div>
+        <div class="m-2">
+          <%= link_to "Vider la liste", destroy_all_employments_path, class: "btn btn-sm btn-outline-danger", data: { confirm: "Cette action va supprimer l'intégralité des données" }, method: :delete  %>
+        </div>
+      </div>
     </div>
-    <h3>Ajouter un archive csv</h3>
-    <%= form_tag import_employments_path, multipart: true do %>
-    <%= file_field_tag 'file' %>
-    <%= submit_tag "Import CSV" %>
-    <% end %>
-    <div>
-      <%= link_to "supprimer", destroy_all_employments_path, method: :delete  %>
-    </div>
   </div>
-  <div class="mt-5" id="tableau">
+  <div class="d-flex justify-content-center" id="tableau">
     <table>
       <%= render partial: 'shared/table_header' %>
       <tbody>
         <% @employments.each do |employment| %>
-          <%= render partial: 'shared/table_body', object: employment, as: 'item' %>
+        <%= render partial: 'shared/table_body', object: employment, as: 'item' %>
         <% end %>
       </tbody>
     </table>
-    <div class="d-flex justify-content-center align-items-center text-center">
+  </div>
+    <div class="d-flex justify-content-center align-items-center text-center pb-2" id="pagination">
       <%= paginate @employments %>
     </div>
-
   </div>
 </div>

@@ -2,7 +2,7 @@ class EmploymentsController < ApplicationController
   before_action :set_employment, only: [:show, :enrichment]
 
   def index
-    @employments = Employment.order(position: :asc, year: :desc).page(params[:page]).per(5)
+    @employments = Employment.order(position: :asc, year: :desc).page(params[:page]).per(10)
   end
 
   def show
@@ -10,7 +10,7 @@ class EmploymentsController < ApplicationController
   end
 
   def import
-    ImportCsv.import(params[:file]) unless params[:file].nil?
+    ImportCsv.import(params[:file][:csv]) unless params[:file].nil?
     redirect_to root_url, notice: 'Fichier importé avec succès'
   end
 
