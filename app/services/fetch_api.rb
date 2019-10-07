@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'json'
+
 class FetchApi
   def self.perform_query(employment)
     query = BuildQuery.encode_query(employment)
