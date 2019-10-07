@@ -26,8 +26,6 @@ class OlderRecord
                                 row["niveau"].downcase,
                                 row["specialite"].downcase)
 
-    raise if results.count > 1
-
     return results.first
   end
 end
