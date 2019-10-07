@@ -1,1 +1,9 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+https://trustpair-test.herokuapp.com
+
+L'application permet :
+- d'importer une archive CSV
+- d'enrichir chaque ligne du tableau individuellement
+- d'enrichir l'ensemble de la base de donnée avec le bouton 'Enrichir la liste'
+- de supprimer l'intégralité de la base donnée avec le bouton 'Supprimer la liste'
+
+L'enrichissement complet de la base de donnée se fait avec Sidekiq (dashboard disponible addresse/sidekiq).
