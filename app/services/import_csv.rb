@@ -1,3 +1,5 @@
+require 'csv'
+
 class ImportCsv
   def self.import(file)
     csv_options = { col_sep: ';', headers: :first_row }

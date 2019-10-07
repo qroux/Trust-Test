@@ -1,3 +1,5 @@
+require 'uri'
+
 class BuildQuery
   def self.encode_query(employment)
     query = "https://opendata.paris.fr/api/records/1.0/search/?"\
