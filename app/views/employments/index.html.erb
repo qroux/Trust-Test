@@ -1,29 +1,33 @@
-<div class="container" id="main-container">
-  <div id="header">
-    <div class="d-flex justify-content-between">
-      <div class="d-flex text-left align-items-center pl-4">
-        <h4>Nombre de métiers référencés: <%= Employment.all.count %></h4>
-      </div>
-      <div class="d-flex align-items-center">
-        <div class="mr-3 pt-1">
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between mt-5" id="tool-bar">
+    <div class="ml-2">
+      <h4>Nombre de metiers référencés: <%= Employment.all.count %></h4>
+    </div>
+    <div>
+      <div class="d-flex justify-content-center">
+        <div class="mr-5">
           <%= form_for :file, url: "employments/import", html: {id: "csv-uploader"}, multipart: true do |f| %>
           <div class="file-upload" >
-            <label for="file-input"><i class="fas fa-file-import"></i></label>
+            <label for="file-input"><i class="fas fa-download"></i></label>
             <%= f.file_field :csv, id:"file-input" %>
           </div>
           <% end %>
         </div>
-        <div class="m-2">
-          <%= link_to 'Enrichir la liste', enrich_all_employments_path, class: "btn btn-sm btn-outline-success", method: :patch  %>
+        <div class="mr-5">
+          <%= link_to enrich_all_employments_path, method: :patch do %>
+          <i class="fab fa-searchengin"></i>
+          <% end %>
         </div>
-        <div class="m-2">
-          <%= link_to "Vider la liste", destroy_all_employments_path, class: "btn btn-sm btn-outline-danger", data: { confirm: "Cette action va supprimer l'intégralité des données" }, method: :delete  %>
+        <div class="mr-4">
+          <%= link_to destroy_all_employments_path, data: { confirm: "Cette action va supprimer l'intégralité des données" }, method: :delete do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-  <div class="d-flex justify-content-center" id="tableau">
-    <table>
+  <div class="table-responsive">
+    <table class="table table-hover text-center">
       <%= render partial: 'shared/table_header' %>
       <tbody>
         <% @employments.each do |employment| %>
@@ -32,8 +36,7 @@
       </tbody>
     </table>
   </div>
-    <div class="d-flex justify-content-center align-items-center text-center pb-2" id="pagination">
-      <%= paginate @employments %>
-    </div>
+  <div class="d-flex justify-content-center align-items-center text-center pb-2" id="pagination">
+    <%= paginate @employments %>
   </div>
 </div>

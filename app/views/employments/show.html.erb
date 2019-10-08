@@ -1,20 +1,22 @@
 <div class="container">
-  <div class="text-center">
-    <h1><%= @employment.position %></h1>
-  </div>
-  <div class="mt-5" id="tableau">
-    <table>
-      <%= render partial: 'shared/table_header' %>
-      <tbody>
-        <%= render partial: 'shared/table_body', object: @employment, as: 'item' %>
-      </tbody>
-    </table>
-  </div>
-  <div class="my-5 p-5" id="manual">
-    <h3>Vérification manuelle</h3>
-    <%= link_to @query, "#{@query}", target: :_blank  %>
-  </div>
-  <div class="d-flex justify-content-center align-items-center text-center">
-    <%= link_to 'retour', root_path, class: "btn btn-outline-success m-4 p-2" %>
+  <div class="mt-5">
+    <div class="text-center">
+      <h4><%= @employment.position %></h4>
+    </div>
+    <div class="table-responsive mt-3">
+      <table class="table text-center">
+        <%= render partial: 'shared/table_header' %>
+        <tbody>
+          <%= render partial: 'shared/table_body', object: @employment, as: 'item' %>
+        </tbody>
+      </table>
+    </div>
+    <div class="my-5" id="manual">
+      <h3>Vérification manuelle</h3>
+      <%= link_to @query, "#{@query}", target: :_blank  %>
+    </div>
+    <div class="d-flex justify-content-center align-items-center text-center">
+      <%= link_to 'retour', root_path, class: "btn btn-outline-success m-4 p-2" %>
+    </div>
   </div>
 </div>

@@ -12,6 +12,6 @@
       <%= item.parity %>
     </td>
   <% else %>
-    <td><p>indisponible</p> <%= link_to "enrichir", enrichment_employment_path(item), method: :patch %></td>
+    <td><%= link_to "enrichir", enrichment_employment_path(item), method: :patch %></td>
   <% end %>
 </tr>

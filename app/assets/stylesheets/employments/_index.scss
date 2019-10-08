@@ -1,53 +1,7 @@
-a {
-  text-decoration: none !important;
-  color: $strong-gray;
-  word-wrap: break-word;
+//tool-box
+i {
+  font-size: 25px;
 }
-a:hover {
-  color: black;
-}
-#header{
-  background-color: white;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-  border-radius: 5px;
-}
-#tableau {
-  padding: 25px;
-  background-color: white;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  text-align: center;
-}
-table {
-  background-color: white;
-}
-.valid {
-  background-color: rgba(0, 255, 42, 0.3) !important;
-}
-.notvalid {
-  background-color: rgba(255, 0, 0, 0.1) !important;
-}
-th {
-  padding: 5px 10px;
-  background-color: #C0CDFF;
-}
-tbody {
-  font-size: 13px;
-}
-tbody tr {
-  transition: all .2s ease-in-out;
-  box-shadow: 0 13px 10px -10px rgba(196,196,196,0.5);
-}
-tbody tr:hover {
-  box-shadow: 0 18px 15px -15px rgba(196,196,196,0.9);
-}
-td {
-  padding: 5px 10px;
-}
-
 
 .file-upload > input
 {
@@ -55,19 +9,43 @@ td {
 }
 .file-upload > label {
   cursor:pointer;
-  font-size: 30px;
   color: $strong-gray;
   :hover {
     color: #00bf83;
     transition: all .3s ease-in-out;
   }
 }
-#pagination {
+
+
+// tableau
+table {
   background-color: white;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
 }
-#manual {
-  background-color: white;
-  border-radius: 5px;
+a {
+  text-decoration: none !important;
+  font-weight: bold;
+  color: black;
+  word-wrap: break-word;
+}
+a:hover {
+  color: #0043b0;
+  transition-duration: 0.5s;
+}
+
+.valid {
+  background-color: rgba(0, 255, 42, 0.3) !important;
+}
+.notvalid {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+}
+th {
+  background-color: #edf1f5;
+}
+
+tbody tr {
+  transition: all .2s ease-in-out;
+  box-shadow: 0 13px 10px -10px rgba(196,196,196,0.5);
+}
+tbody tr:hover {
+  box-shadow: 0 18px 15px -15px rgba(196,196,196,0.9);
 }
