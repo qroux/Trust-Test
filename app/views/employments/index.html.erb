@@ -14,7 +14,7 @@
           <% end %>
         </div>
         <div class="mr-5">
-          <%= link_to enrich_all_employments_path, method: :patch do %>
+          <%= link_to enrich_all_employments_path, data: { confirm: "Cette action va enrichir l'intégralité des données. Cette action peut prendre du temps" }, method: :patch do %>
           <i class="fab fa-searchengin"></i>
           <% end %>
         </div>
