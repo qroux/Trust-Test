@@ -10,7 +10,7 @@ class EmploymentsController < ApplicationController
   end
 
   def import
-    if params[:file].nil? || params[:file][:csv].content_type != "text/csv"
+    if params[:file].nil? #|| params[:file][:csv].content_type != "text/csv" doesn't work with windows
       flash[:alert] = "Erreur: mauvais format de fichier"
     else
       ImportCsv.import(params[:file][:csv])
