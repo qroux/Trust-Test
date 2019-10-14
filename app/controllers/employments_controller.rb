@@ -10,8 +10,13 @@ class EmploymentsController < ApplicationController
   end
 
   def import
-    ImportCsv.import(params[:file][:csv]) unless params[:file].nil?
-    redirect_to root_url, notice: 'Fichier importé avec succès'
+    if params[:file].nil? || params[:file][:csv].content_type != "text/csv"
+      flash[:alert] = "Erreur: mauvais format de fichier"
+    else
+      ImportCsv.import(params[:file][:csv])
+      flash[:notice] = "Archive importée avec succès"
+    end
+    redirect_to root_url
   end
 
   def destroy_all
@@ -22,7 +27,7 @@ class EmploymentsController < ApplicationController
   def enrichment
     EnrichJob.perform_now(@employment)
 
-    redirect_to employment_path(@employment)
+    redirect_to employment_path(@employment), notice: "#{@employment.position} mis à jour"
   end
 
   def enrich_all
