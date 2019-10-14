@@ -8,19 +8,19 @@
         <div class="mr-5">
           <%= form_for :file, url: "employments/import", html: {id: "csv-uploader"}, multipart: true do |f| %>
           <div class="file-upload" >
-            <label for="file-input"><i class="fas fa-download"></i></label>
+            <label for="file-input" title="Importer archive CSV"><i class="fas fa-download"></i></label>
             <%= f.file_field :csv, id:"file-input" %>
           </div>
           <% end %>
         </div>
         <div class="mr-5">
           <%= link_to enrich_all_employments_path, data: { confirm: "Cette action va enrichir l'intégralité des données. Cette action peut prendre du temps" }, method: :patch do %>
-          <i class="fab fa-searchengin"></i>
+          <i class="fab fa-searchengin" title="Enrichir toute la liste"></i>
           <% end %>
         </div>
         <div class="mr-4">
           <%= link_to destroy_all_employments_path, data: { confirm: "Cette action va supprimer l'intégralité des données" }, method: :delete do %>
-          <i class="far fa-trash-alt"></i>
+          <i class="far fa-trash-alt" title="Supprimer toute la liste"></i>
           <% end %>
         </div>
       </div>

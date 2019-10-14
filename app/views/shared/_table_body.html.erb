@@ -12,6 +12,6 @@
       <%= item.parity %>
     </td>
   <% else %>
-    <td><%= link_to "enrichir", enrichment_employment_path(item), method: :patch %></td>
+    <td title="Recherche la parité de <%= item.position %> "><%= link_to "enrichir", enrichment_employment_path(item), method: :patch %></td>
   <% end %>
 </tr>
