@@ -7,3 +7,6 @@ L'application permet :
 - de supprimer l'intégralité de la base donnée avec le bouton 'Supprimer la liste'
 
 L'enrichissement complet de la base de donnée se fait avec Sidekiq (dashboard disponible addresse/sidekiq).
+
+Test: Rspec
+$ bundle exec rspec
