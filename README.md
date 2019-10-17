@@ -8,5 +8,6 @@ L'application permet :
 
 L'enrichissement complet de la base de donnée se fait avec Sidekiq (dashboard disponible addresse/sidekiq).
 
-Test: Rspec
+Test du controller: Rspec
+
 $ bundle exec rspec
